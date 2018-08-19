@@ -1,0 +1,4 @@
+Application name	logScrobbler
+API key	f2131bd128a477ca7277ff8c3f33f65b
+Shared secret	543bba93bfcbbe685309c88eeb61f18c
+Registered to	LuciferianDawn
