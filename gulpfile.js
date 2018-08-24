@@ -18,6 +18,7 @@ var gulp = require('gulp'),
 	cssnano = require('gulp-cssnano'),
 	browserify = require('browserify'),
 	babelify = require('babelify'),
+	bulkify = require('bulkify'),
 	source = require('vinyl-source-stream'),
 	buffer = require('vinyl-buffer'),
 	historyFallback = require('connect-history-api-fallback');
@@ -89,6 +90,7 @@ gulp.task('js', function () {
 		.transform('babelify', {
 			presets: ['es2015']
 		})
+		.transform('bulkify')
 		.bundle()
 		.on('error', function (error) {
 			console.log(error);

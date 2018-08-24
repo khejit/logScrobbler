@@ -1,7 +1,7 @@
 import Scrobbler from './scrobbler/Scrobbler';
 import LoggedAuth from './auth/LoggedAuth';
-import Hero from './Hero';
 import Stage from './Stage';
+import FileInput from './FileInput';
 
 export default {
   name: 'Logged',
@@ -10,8 +10,8 @@ export default {
   ],
   components: {
     Scrobbler,
-    Hero,
-    Stage
+    Stage,
+    FileInput
   },
   data: function () {
     return {
@@ -19,15 +19,15 @@ export default {
     };
   },
   computed: {
-    username: function(){
+    username: function () {
       return this.session.username;
     }
   },
   template: /*html*/ `<Stage>
-        <Hero title="Logged in as" :subtitle="username"></Hero>         
-        <div>
-            <p>Chuj</p>
-        </div>
+        <Hero title="Logged in as" :subtitle="username"></Hero>
+        <CenteredColumn>
+          <FileInput />
+        </CenteredColumn>
     </Stage>`,
   mounted: function () {
 
