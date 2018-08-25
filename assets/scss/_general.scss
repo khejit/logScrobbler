@@ -15,5 +15,12 @@ body {
 .main-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+
+    &.fit {
+        height: 100vh;
+    }
+}
+
+.table-container {
+    overflow-x: auto;
 }

@@ -1,5 +1,6 @@
 export default {
-    template: /*html*/ `<div class="main-container">
+    props: ['fit'],
+    template: /*html*/ `<div class="main-container" :class="{fit: fit}">
         <slot></slot>
     </div>`
 }

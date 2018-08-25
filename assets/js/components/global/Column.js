@@ -1,5 +1,6 @@
 export default {
-    template: /*html*/`<div class="columns is-vcentered is-marginless f-grow">
+    props: ['vcentered'],
+    template: /*html*/`<div class="columns is-marginless f-grow" :class="{'is-vcentered': vcentered}">
             <div class="column has-text-centered">
                 <slot></slot>
             </div>

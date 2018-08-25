@@ -1,4 +1,8 @@
 @import '../../node_modules/bulma/bulma';
 @import '../../node_modules/bulma-extensions/bulma-pageloader/dist/css/bulma-pageloader';
+@import '../../node_modules/bulma-extensions/bulma-checkradio/dist/css/bulma-checkradio';
 @import 'utils';
 @import 'general';
+
+@import 'components/element';
+@import 'components/tracks-table'

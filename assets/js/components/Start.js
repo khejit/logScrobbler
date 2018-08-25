@@ -16,14 +16,14 @@ export default {
             apiKey
         }
     },
-    template: /*html*/ `<Stage>
+    template: /*html*/ `<Stage :fit="true">
         <Hero title="Log Scrobbler"></Hero>         
-        <CenteredColumn>
+        <Column :vcentered="true">
             <a :href="'http://www.last.fm/api/auth/?api_key='+apiKey+'&cb=http://localhost:3000/'"
                 class="button is-link is-medium">
                 Log in with Lastfm
             </a>
-        </CenteredColumn>
+        </Column>
         <div class="pageloader" :class="{'is-active': loading}"></div>
     </Stage>`
 }

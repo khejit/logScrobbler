@@ -21,7 +21,11 @@ export default {
             }
         },
         setSessionCredentials: function () {
-            this.lfm.setSessionCredentials(...this.session);
+            this.lfm.setSessionCredentials(this.session.username, this.session.userkey);
+        },
+        logout: function () {
+            localStorage.removeItem('session');
+            this.$router.push({ name: 'start' });
         }
     }
 }
