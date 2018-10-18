@@ -17749,6 +17749,8 @@ var http = require("http")
   , crypto = require("crypto")
   , LastFmBase = require("./lastfm-base");
 
+  console.log(http.request);
+
 var WRITE_METHODS = ["album.addtags", "album.removetag", "album.share",
         "artist.addtags", "artist.removetag", "artist.share", "artist.shout",
         "event.attend", "event.share", "event.shout",
@@ -17781,6 +17783,7 @@ var LastFmRequest = module.exports = function(lastfm, method, params) {
       url += "?" + data;
     }
     var options = {
+        protocol: 'http:',
         host: host,
         port: 80,
         path: url,
