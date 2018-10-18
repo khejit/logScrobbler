@@ -6,7 +6,7 @@ import Logged from './components/Logged';
 Vue.use(Router)
 
 let router = new Router({
-    mode: 'history',
+    // mode: 'history',
     routes: [
         {
             path: '/',

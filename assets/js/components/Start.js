@@ -16,10 +16,15 @@ export default {
             apiKey
         }
     },
+    computed: {
+        callbackUrl: function(){
+            return location.origin;
+        }
+    },
     template: /*html*/ `<Stage :fit="true">
         <Hero title="Log Scrobbler"></Hero>         
         <Column :vcentered="true">
-            <a :href="'http://www.last.fm/api/auth/?api_key='+apiKey+'&cb=http://localhost:3000/'"
+            <a :href="'http://www.last.fm/api/auth/?api_key='+apiKey+'&cb='+callbackUrl"
                 class="button is-link is-medium">
                 Log in with Lastfm
             </a>

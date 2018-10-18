@@ -186,8 +186,10 @@ exports.default = {
                             formattedTrack[heading] = !!track[hIndex];
                             break;
                         case 'time':
-                            formattedTrack['timestamp'] = track[hIndex];
-                            formattedTrack[heading] = _this.getTrackTimeFormatted(track[hIndex]);
+                            var unshiftedTimestamp = track[hIndex],
+                                shiftedTimestamp = unshiftedTimestamp - 7200;
+                            formattedTrack['timestamp'] = shiftedTimestamp;
+                            formattedTrack[heading] = _this.getTrackTimeFormatted(shiftedTimestamp);
                             break;
                         default:
                             formattedTrack[heading] = track[hIndex];
@@ -253,7 +255,12 @@ exports.default = {
             apiKey: _lastfm.apiKey
         };
     },
-    template: /*html*/'<Stage :fit="true">\n        <Hero title="Log Scrobbler"></Hero>         \n        <Column :vcentered="true">\n            <a :href="\'http://www.last.fm/api/auth/?api_key=\'+apiKey+\'&cb=http://localhost:3000/\'"\n                class="button is-link is-medium">\n                Log in with Lastfm\n            </a>\n        </Column>\n        <div class="pageloader" :class="{\'is-active\': loading}"></div>\n    </Stage>'
+    computed: {
+        callbackUrl: function callbackUrl() {
+            return location.origin;
+        }
+    },
+    template: /*html*/'<Stage :fit="true">\n        <Hero title="Log Scrobbler"></Hero>         \n        <Column :vcentered="true">\n            <a :href="\'http://www.last.fm/api/auth/?api_key=\'+apiKey+\'&cb=\'+callbackUrl"\n                class="button is-link is-medium">\n                Log in with Lastfm\n            </a>\n        </Column>\n        <div class="pageloader" :class="{\'is-active\': loading}"></div>\n    </Stage>'
 };
 
 },{"../../../lastfm.json":15,"./Stage":4,"./auth/StartAuth":8}],6:[function(require,module,exports){
@@ -365,7 +372,9 @@ exports.default = {
     },
     methods: {
         getTokenIfPresent: function getTokenIfPresent() {
-            var token = this.$route.query.token;
+            // const token = this.$route.query.token; // doesn't work in router hash mode
+            var urlParams = new URLSearchParams(window.location.search);
+            var token = urlParams.get('token');
             this.token = token || '';
             return !!this.token;
         },
@@ -530,7 +539,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _vue2.default.use(_vueRouter2.default);
 
 var router = new _vueRouter2.default({
-    mode: 'history',
+    // mode: 'history',
     routes: [{
         path: '/',
         name: 'start',
