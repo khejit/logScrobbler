@@ -257,7 +257,7 @@ exports.default = {
     },
     computed: {
         callbackUrl: function callbackUrl() {
-            return location.origin;
+            return location.origin + location.pathname;
         }
     },
     template: /*html*/'<Stage :fit="true">\n        <Hero title="Log Scrobbler"></Hero>         \n        <Column :vcentered="true">\n            <a :href="\'http://www.last.fm/api/auth/?api_key=\'+apiKey+\'&cb=\'+callbackUrl"\n                class="button is-link is-medium">\n                Log in with Lastfm\n            </a>\n        </Column>\n        <div class="pageloader" :class="{\'is-active\': loading}"></div>\n    </Stage>'

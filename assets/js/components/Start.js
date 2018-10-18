@@ -18,7 +18,7 @@ export default {
     },
     computed: {
         callbackUrl: function(){
-            return location.origin;
+            return location.origin + location.pathname;
         }
     },
     template: /*html*/ `<Stage :fit="true">
