@@ -17782,7 +17782,7 @@ var LastFmRequest = module.exports = function(lastfm, method, params) {
     }
     var options = {
         host: host,
-        port: 80,
+        // port: 80,
         path: url,
         method: httpVerb,
         headers: requestHeaders(httpVerb, host, data)
