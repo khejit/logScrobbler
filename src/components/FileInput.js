@@ -26,12 +26,12 @@ export default {
         <label class="file-label">
             <input class="file-input" @change="processFile" type="file" name="resume">
             <span class="file-cta">
-            <span class="file-icon is-marginless">
-                <i class="fas fa-upload"></i>
-            </span>
-            <span class="file-label">
-                Choose .scrobbler.log file
-            </span>
+                <span class="file-icon is-marginless">
+                    <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                    Choose .scrobbler.log file
+                </span>
             </span>
         </label>
     </div>`,

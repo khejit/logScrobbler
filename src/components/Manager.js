@@ -1,6 +1,5 @@
+import moment from 'moment';
 import Scrobbler from './scrobbler/Scrobbler';
-
-const moment = window.moment;
 
 export default {
     name: 'Manager',
