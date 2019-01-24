@@ -1,8 +1,8 @@
-import Scrobbler from './scrobbler/Scrobbler';
-import LoggedAuth from './auth/LoggedAuth';
+import Scrobbler from '../components/scrobbler/Scrobbler';
+import LoggedAuth from '../components/auth/LoggedAuth';
 import Stage from './Stage';
-import FileInput from './FileInput';
-import Manager from './Manager';
+import FileInput from '../components/FileInput';
+import Manager from '../components/Manager';
 
 export default {
   name: 'Logged',

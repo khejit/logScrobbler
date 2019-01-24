@@ -1,5 +1,5 @@
-import * as lastfmJson from '../../../../lastfm.json';
-import LastfmAPI from 'lastfmapi';
+import * as lastfmJson from '@/lastfm.json';
+const LastfmAPI = require('lastfmapi');
 
 export default {
     data: function () {

@@ -1,7 +1,13 @@
-import {apiKey} from '../../../lastfm.json';
+import {apiKey} from '@/lastfm.json';
 
-import StartAuth from './auth/StartAuth'
+import StartAuth from '@/components/auth/StartAuth'
 import Stage from './Stage';
+
+import Vue from 'vue';
+
+Vue.component('hero', {
+    template: `<p>huj</p>`
+})
 
 export default {
     name: 'Start',
