@@ -12,9 +12,7 @@
 import '@/components/global'
 
 export default {
-  mounted(){
-    console.log(this.$options.components)
-  }
+  
 }
 </script>
 
