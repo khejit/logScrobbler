@@ -11,7 +11,7 @@
     "bulma": "^0.7.2",
     "bulma-extensions": "^4.0.1",
     "lastfmapi": "^0.1.1",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
     "moment": "^2.24.0",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
