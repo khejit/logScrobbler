@@ -11,7 +11,6 @@ export default {
     mounted: function () {
         this.setUpLfm();
         this.recoverSession();
-        this.setSessionCredentials();
     },
     methods: {
         recoverSession: function () {
@@ -19,9 +18,6 @@ export default {
             if (session) {
                 this.session = JSON.parse(session);
             }
-        },
-        setSessionCredentials: function () {
-            this.lfm.setSessionCredentials(this.session.username, this.session.userkey);
         },
         logout: function () {
             localStorage.removeItem('session');

@@ -1,5 +1,5 @@
 import * as lastfmJson from '@/lastfm.json';
-const LastfmAPI = require('lastfmapi');
+const LastfmAPI = require('lastfm-api-client');
 
 export default {
     data: function () {
@@ -10,8 +10,8 @@ export default {
     methods: {
         setUpLfm: function () {
             this.lfm = new LastfmAPI({
-                api_key: lastfmJson.apiKey,
-                secret: lastfmJson.apiSecret
+                apiKey: lastfmJson.apiKey,
+                apiSecret: lastfmJson.apiSecret
             });
         },
     }

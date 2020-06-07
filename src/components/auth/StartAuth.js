@@ -24,18 +24,16 @@ export default {
 			this.token = token || '';
 			return !!this.token;
 		},
-		setNewSession: function() {
-			const that = this;
-			this.lfm.authenticate(this.token, function(err, session) {
-				if (err) {
-					that.loading = false;
-					throw err;
-				}
-				let newSession = {};
-				({ username: newSession.username, key: newSession.userkey } = session);
-				localStorage.setItem('session', JSON.stringify(newSession));
-				that.goToLogged();
-			});
+		async setNewSession() {
+			try {
+				const response = await this.lfm.auth.getSession({token: this.token}),
+				session = response.session;
+				localStorage.setItem('session', JSON.stringify({ username: session.name, key: session.key }));
+				this.goToLogged();
+			} catch (err) {
+				this.loading = false;
+				throw err;
+			}
 		},
 		goToLogged: function() {
 			this.$router.push({ name: 'logged' });
