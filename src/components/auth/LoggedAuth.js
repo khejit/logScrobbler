@@ -10,14 +10,22 @@ export default {
     },
     mounted: function () {
         this.setUpLfm();
-        this.recoverSession();
+        const session = this.recoverSession();
+        if (session){
+            this.setSessionCredentials(session)
+        } else {
+            this.logout();
+        };
     },
     methods: {
         recoverSession: function () {
             const session = localStorage.getItem('session');
             if (session) {
                 this.session = JSON.parse(session);
+                return this.session;
             }
+
+            return false;
         },
         logout: function () {
             localStorage.removeItem('session');

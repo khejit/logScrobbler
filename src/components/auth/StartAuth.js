@@ -8,7 +8,7 @@ export default {
 			loading: true,
 		};
 	},
-	mounted: function() {
+	mounted() {
 		if (this.getTokenIfPresent()) {
 			this.setUpLfm();
 			this.setNewSession();
@@ -24,16 +24,16 @@ export default {
 			this.token = token || '';
 			return !!this.token;
 		},
-		async setNewSession() {
-			try {
-				const response = await this.lfm.auth.getSession({token: this.token}),
-				session = response.session;
+		setNewSession() {
+			this.lfm.auth.getSession(this.token, (err, session) => {
+				if (err) {
+					this.loading = false;
+					throw err;
+				}
 				localStorage.setItem('session', JSON.stringify({ username: session.name, key: session.key }));
+				this.setSessionCredentials(localStorage.getItem('session'));
 				this.goToLogged();
-			} catch (err) {
-				this.loading = false;
-				throw err;
-			}
+			});
 		},
 		goToLogged: function() {
 			this.$router.push({ name: 'logged' });
