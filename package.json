@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "buefy": "^0.8.20",
-    "lastfmapi": "^0.1.1",
+    "lastfmapi": "git+https://git@github.com/khejit/node-lastfmapi.git",
     "lodash": "^4.17.11",
-    "moment": "^2.24.0",
+    "moment": "^2.27.0",
     "vue": "^2.5.22",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
