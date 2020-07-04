@@ -61,7 +61,8 @@ export default {
 							break;
 						case 'time':
 							const unshiftedTimestamp = track[hIndex],
-								shiftedTimestamp = unshiftedTimestamp - 7200;
+								timestampShift = parseInt(moment().utcOffset()) * 60, // difference in seconds
+								shiftedTimestamp = parseInt(unshiftedTimestamp) + timestampShift;
 							formattedTrack['timestamp'] = shiftedTimestamp;
 							formattedTrack[heading] = this.getTrackTimeFormatted(shiftedTimestamp);
 							break;
