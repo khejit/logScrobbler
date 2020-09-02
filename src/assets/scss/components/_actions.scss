@@ -1,0 +1,10 @@
+.actions {
+    &__logout {
+        i {
+            transform: scale(-1, 1);
+            margin-left: 0.5em;
+            margin-top: 0.2em;
+            font-size: 1.15em;
+        }
+    }
+}

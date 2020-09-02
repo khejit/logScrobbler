@@ -6,15 +6,12 @@ export default {
 			sending: false,
 		};
 	},
-	template: /*html*/ `<button v-if="tracks" class="button" @click="handleClick"
-        :class="{
-            'is-danger': success === false,
-            'is-success': success === true,
-            'is-info': success === null,
-            'is-loading': sending
-            }">
+	template: /*html*/ `<vs-button v-if="tracks" @click="handleClick"
+		:loading="sending"
+		:danger="success === false"
+		:success="success === true">
         Scrobble checked
-     </button>`,
+     </vs-button>`,
 	methods: {
 		scrobbleSingle: function(artist, track, timestamp) {
 			this.lfm.track.scrobble(

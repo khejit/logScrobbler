@@ -1,0 +1,11 @@
+.navbar {
+    &__actions {
+        margin-left: 0.4rem;
+    }
+
+    &__logged-info {
+        margin-top: 0;
+        text-transform: uppercase;
+        letter-spacing: 0.0625em;
+    }
+}

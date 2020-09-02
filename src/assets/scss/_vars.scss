@@ -1,0 +1,27 @@
+$media-sm: 576px;
+$media-md: 768px;
+$media-lg: 992px;
+$media-xl: 1200px;
+
+$colors: (
+    main: #2C3E50,
+    accent: #2C4F73,
+    accent-light: #5183B5,
+    background: #EBDFD3,
+    background-light: #f0f0f0,
+    complementary: #57483A,
+    danger: #B6174B,
+);
+
+:root {
+    --color-main: #{map-get($colors, main)};
+    --color-accent: #{map-get($colors, accent)};
+    --color-accent-light: #{map-get($colors, accent-light)};
+    --color-background: #{map-get($colors, background)};
+    --color-background-light: #{map-get($colors, background-light)};
+    --color-complementary: #{map-get($colors, complementary)};
+    --color-danger: #{map-get($colors, danger)};
+}
+
+$default-scale-factor: 10/16;
+$rem: 1rem * $default-scale-factor;

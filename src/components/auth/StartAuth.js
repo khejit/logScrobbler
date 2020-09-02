@@ -6,6 +6,7 @@ export default {
 		return {
 			token: '',
 			loading: true,
+			vsLoading: null,
 		};
 	},
 	mounted() {
@@ -14,6 +15,15 @@ export default {
 			this.setNewSession();
 		} else {
 			this.loading = false;
+		}
+	},
+	watch: {
+		loading: function(loading) {
+			if(loading) {
+				this.vsLoading = this.$vs.loading();
+			} else if (this.vsLoading) {
+				this.vsLoading.close();
+			}
 		}
 	},
 	methods: {

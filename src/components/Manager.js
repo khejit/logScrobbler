@@ -1,90 +1,95 @@
-import moment from 'moment';
-import Scrobbler from './scrobbler/Scrobbler';
+import moment from "moment";
+import Scrobbler from "./scrobbler/Scrobbler";
+import TracksTable from "./TracksTable";
+import forIn from "lodash/forIn";
+import cloneDeep from "lodash/cloneDeep";
 
 export default {
-	name: 'Manager',
-	props: ['initialTracks', 'lfm'],
-	components: { Scrobbler },
-	template: /*html*/ `<div class="table-container container">
-        <table class="table is-striped tracks-table">
-            <thead>
-                <tr>
-                    <th v-for="title in trackHeadings">{{title | capitalize}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="track in tracks">
-                    <template v-for="(prop, key) in track">
-                        <td v-if="key==='accepted'">
-                            <div class="field" @click="handleAccepted(track)">
-                                <input class="is-checkradio" type="checkbox" :checked="prop">
-                                <label></label>
-                            </div>
-                        </td>
-                        <td v-else-if="key!=='timestamp'">{{prop}}</td>
-                    </template>
-                </tr>
-            </tbody>
-        </table>
-        <div class="buttons is-right">
-            <Scrobbler :lfm="lfm" :tracks="tracksFormatted.filter(track=>track.accepted === true)" />
-        </div>
+  name: "Manager",
+  props: ["initialTracks", "lfm"],
+  components: { Scrobbler, TracksTable },
+  template: /*html*/ `<div class="manager">
+		<vs-row>
+			<vs-col offset="1" w="10">
+				<tracks-table :headings="trackHeadings" :tracks="tracks" :handleAccepted="handleAccepted" :handleSort="handleSort" />
+				<div class="manager__buttons is-right">
+					<Scrobbler :lfm="lfm" :tracks="tracks.filter(track=>track.accepted === true)" />
+				</div>
+			</vs-col>
+		</vs-row>
     </div>
     `,
-	filters: {
-		capitalize: function(value) {
-			if (!value) return '';
-			value = value.toString();
-			return value.charAt(0).toUpperCase() + value.slice(1);
-		},
-	},
-	data: function() {
-		return {
-			trackHeadings: ['artist', 'album', 'track', 'track num', 'length', 'accepted', 'time'],
-			tracks: [],
-		};
-	},
-	mounted: function() {
-		this.tracks = this.tracksFormatted;
-	},
-	computed: {
-		tracksFormatted() {
-			return this.initialTracks.map((track, index) => {
-				let formattedTrack = {};
-				this.trackHeadings.forEach((heading, hIndex) => {
-					switch (heading) {
-						case 'length':
-							formattedTrack[heading] = this.secondsToMinutesString(track[hIndex]);
-							break;
-						case 'accepted':
-							formattedTrack[heading] = !!track[hIndex];
-							break;
-						case 'time':
-							const unshiftedTimestamp = track[hIndex],
-								timestampShift = parseInt(moment().utcOffset()) * 60, // difference in seconds
-								shiftedTimestamp = parseInt(unshiftedTimestamp) + timestampShift;
-							formattedTrack['timestamp'] = shiftedTimestamp;
-							formattedTrack[heading] = this.getTrackTimeFormatted(shiftedTimestamp);
-							break;
-						default:
-							formattedTrack[heading] = track[hIndex];
-					}
-				});
-				return formattedTrack;
-			});
-		},
-	},
-	methods: {
-		secondsToMinutesString: (time) => {
-			const minutes = Math.floor(time / 60),
-				seconds = ('0' + (time % 60)).slice(-2); // https://stackoverflow.com/a/8043061
-			return `${minutes}:${seconds}`;
-		},
-		getTrackTimeFormatted: (timestamp) => {
-			return moment.unix(timestamp).format('DD.MM HH:mm');
-		},
-		handleAccepted: (track) => {
-			track.accepted = !track.accepted;
-		},
-	},
+  filters: {
+    capitalize: function(value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    },
+  },
+  data: function() {
+    return {
+      trackHeadings: [
+        "artist",
+        "album",
+        "track",
+        "trackNum",
+        "length",
+        "accepted",
+        "time",
+      ],
+      tracks: [],
+    };
+  },
+  mounted: function() {
+    this.tracks = this.formatTracks(this.initialTracks);
+  },
+  methods: {
+    secondsToMinutesString: (time) => {
+      const minutes = Math.floor(time / 60),
+        seconds = ("0" + (time % 60)).slice(-2); // https://stackoverflow.com/a/8043061
+      return `${minutes}:${seconds}`;
+    },
+    getTrackTimeFormatted: (timestamp) => {
+      return moment.unix(timestamp).format("DD.MM HH:mm");
+    },
+    handleAccepted: (track) => {
+      track.accepted = !track.accepted;
+    },
+    handleSort(event, title) {
+      this.tracks = this.$vs.sortData(event, this.tracks, title);
+    },
+    formatTracks(tracks) {
+      return tracks.map((track, index) => {
+
+        let formattedTrack = {};
+
+        forIn(this.trackHeadings, (heading, hIndex) => {
+          switch (heading) {
+            case "length":
+              formattedTrack[heading] = this.secondsToMinutesString(
+                track[hIndex]
+              );
+              break;
+            case "accepted":
+              formattedTrack[heading] = !!track[hIndex];
+              break;
+            case "time":
+              const unshiftedTimestamp = track[hIndex],
+                timestampShift = parseInt(moment().utcOffset()) * 60, // difference in seconds
+                shiftedTimestamp =
+                  parseInt(unshiftedTimestamp) + timestampShift;
+              formattedTrack["timestamp"] = shiftedTimestamp;
+              formattedTrack[heading] = this.getTrackTimeFormatted(
+                shiftedTimestamp
+              );
+              break;
+            default:
+              formattedTrack[heading] = track[hIndex];
+          }
+        });
+
+		return formattedTrack;
+      });
+    },
+  },
 };

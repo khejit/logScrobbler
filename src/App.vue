@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="app">
     <!--
     Even when routes use the same component, treat them
     as distinct and create the component again.
@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import '@/components/global'
+import '@/components/global';
 
 export default {
   
 }
 </script>
 
-<style lang="sass">
+<style lang="scss">
 @import '@/assets/scss/main.scss';
 </style>

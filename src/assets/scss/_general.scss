@@ -10,17 +10,41 @@ html {
 
 body {
     // font-size: 16px;
+    color: color(main);
 }
 
-.main-container {
-    display: flex;
-    flex-direction: column;
+.app {
+    &__stage {
+        display: flex;
+        flex-direction: column;
+        background-color: color(background-light);
 
-    &.fit {
-        height: 100vh;
+        &.fit {
+            height: 100vh;
+
+            .main-area {
+                height: 100%;
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.container {
+    margin: 0 15px;
+
+    @media (min-width: $media-md){
+        margin: 0 45px;
     }
 }
 
 .table-container {
     overflow-x: auto;
+    margin-top: 54px;
+}
+
+.logo {
+    margin: 4px 0;
+    height: 26px;
 }

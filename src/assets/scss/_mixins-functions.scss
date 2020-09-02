@@ -1,0 +1,8 @@
+@mixin colorVar($property, $varName) {
+  #{$property}: map-get($colors, $varName);
+  #{$property}: var(--color-#{$varName});
+}
+
+@function color($name) {
+    @return map-get($colors, $name);
+}

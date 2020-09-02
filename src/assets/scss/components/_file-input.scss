@@ -1,0 +1,62 @@
+.file-input {
+    &, & label {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        height: 5*$rem;
+    }
+
+    input {
+        min-width: 14*$rem;
+        margin: 0;
+        filter: alpha(opacity=0);
+        opacity: 0;
+    }
+
+    span {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 5;
+        height: 5*$rem;
+        padding: .5*$rem 1*$rem;
+        line-height: 2.5;
+        color: #555;
+        background-color: #fff;
+        border: .075*$rem solid #ddd;
+        border-radius: .25*$rem;
+        box-shadow: inset 0 0.2*$rem 0.4*$rem rgba(0,0,0,.05);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &:before {
+            position: absolute;
+            top: -.075*$rem;
+            right: -.075*$rem;
+            bottom: -.075*$rem;
+            z-index: 6;
+            display: block;
+            content: "Browse";
+            height: 5*$rem;
+            padding: .5*$rem 1*$rem;
+            line-height: 2.5;
+            color: #555;
+            background-color: #eee;
+            border: .075*$rem solid #ddd;
+            border-radius: 0 .25*$rem .25*$rem 0;
+        }
+
+        &::before {
+            @include colorVar(color, background-light);
+            @include colorVar(background-color, main);
+            @include colorVar(border-color, background);
+        }
+
+        &:after {
+            content: attr(data-text);
+        }
+    }
+}

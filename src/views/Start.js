@@ -1,13 +1,8 @@
 import {apiKey} from '@/lastfm.json';
 
 import StartAuth from '@/components/auth/StartAuth'
-import Stage from './Stage';
-
-import Vue from 'vue';
-
-Vue.component('hero', {
-    template: `<p>huj</p>`
-})
+import AppStage from './AppStage';
+import MainArea from '@/components/MainArea'
 
 export default {
     name: 'Start',
@@ -15,7 +10,8 @@ export default {
         StartAuth
     ],
     components: {
-        Stage
+        AppStage,
+        MainArea
     },
     data: function(){
         return {
@@ -27,14 +23,13 @@ export default {
             return location.origin + location.pathname;
         }
     },
-    template: /*html*/ `<Stage :fit="true">
-        <Hero title="Log Scrobbler"></Hero>         
-        <Column :vcentered="true">
+    template: /*html*/ `<AppStage>
+        <Navbar></Navbar>         
+        <MainArea>
             <a :href="'http://www.last.fm/api/auth/?api_key='+apiKey+'&cb='+callbackUrl"
                 class="button is-link is-medium">
                 Log in with Lastfm
             </a>
-        </Column>
-        <div class="pageloader" :class="{'is-active': loading}"></div>
-    </Stage>`
+        </MainArea>
+    </AppStage>`
 }

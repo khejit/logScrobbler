@@ -1,8 +1,9 @@
-import Scrobbler from '../components/scrobbler/Scrobbler';
-import LoggedAuth from '../components/auth/LoggedAuth';
-import Stage from './Stage';
-import FileInput from '../components/FileInput';
-import Manager from '../components/Manager';
+import Scrobbler from '@/components/scrobbler/Scrobbler';
+import LoggedAuth from '@/components/auth/LoggedAuth';
+import AppStage from './AppStage';
+import FileInput from '@/components/FileInput';
+import Manager from '@/components/Manager';
+import MainArea from '@/components/MainArea';
 
 export default {
   name: 'Logged',
@@ -11,9 +12,10 @@ export default {
   ],
   components: {
     Scrobbler,
-    Stage,
+    AppStage,
     FileInput,
-    Manager
+    Manager,
+    MainArea
   },
   data: function () {
     return {
@@ -31,13 +33,13 @@ export default {
       return this.session.username;
     }
   },
-  template: /*html*/ `<Stage :fit="!tracks.length">
-        <Hero title="Logged in as" :subtitle="username" :actions="actions"></Hero>
-        <Column :vcentered="!tracks.length">
+  template: /*html*/ `<AppStage :fit="!tracks.length" v-slot="{setAppLoading}">
+        <Navbar title="Logged in as" :subtitle="username" :actions="actions"></Navbar>
+        <MainArea>
           <Manager v-if="tracks.length" :initialTracks="tracks" :lfm="lfm" />
-          <FileInput v-else :setTracks="setTracks" />
-        </Column>
-    </Stage>`,
+          <FileInput v-else :setTracks="setTracks" :setAppLoading="setAppLoading" />
+        </MainArea>
+    </AppStage>`,
   mounted: function () {
 
   },

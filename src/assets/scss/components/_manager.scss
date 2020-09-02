@@ -1,0 +1,11 @@
+.manager {
+    &__buttons {
+        margin-top: 1.8 * $rem;
+
+        &.is-right {
+            > * {
+                margin-left: auto;
+            }
+        }
+    }
+}

@@ -1,8 +1,18 @@
 @import './vendors/normalize';
 @import './vendors/boilerplate';
 
+@import './vars';
+@import './mixins-functions';
+
+@import './overrides/vuesax';
+
+@import './typography';
+
 @import './utils';
 @import './general';
 
-@import './components/element';
-@import './components/tracks-table'
+@import './components/navbar';
+@import './components/file-input';
+@import './components/main-area';
+@import './components/manager';
+@import './components/actions';

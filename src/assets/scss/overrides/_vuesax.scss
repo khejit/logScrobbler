@@ -1,0 +1,15 @@
+.vs-navbar {
+    padding: 0 15px !important;
+
+    @media (min-width: $media-md) {
+        padding: 0 45px !important;
+    }
+}
+
+.vs-navbar-content {
+    left: 0;
+}
+
+.vs-button {
+    // font-size: 1.4rem !important;
+}
