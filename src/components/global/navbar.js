@@ -4,7 +4,7 @@ export default {
   props: ["title", "subtitle", "actions"],
   template: /*html*/ `<vs-navbar class="navbar" square center-collapsed>
         <template #left>
-          <img class="logo" src="/logo.svg" alt="Logo" />
+          <img class="logo" :src="publicPath+'logo.svg'" alt="Logo" />
         </template>
         
         <v-centered-text><h4 class="navbar__logged-info">{{title}}<span v-if="subtitle"> {{subtitle}}</span></h4></v-centered-text>
@@ -20,6 +20,7 @@ export default {
   data() {
     return {
       buttonColor,
+      publicPath: process.env.BASE_URL,
     };
   },
 };

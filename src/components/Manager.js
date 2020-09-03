@@ -71,14 +71,9 @@ export default {
               formattedTrack[heading] = !!track[hIndex];
               break;
             case "time":
-              const unshiftedTimestamp = track[hIndex],
-                timestampShift = parseInt(moment().utcOffset()) * 60, // difference in seconds
-                shiftedTimestamp =
-                  parseInt(unshiftedTimestamp) + timestampShift;
-              formattedTrack["timestamp"] = shiftedTimestamp;
-              formattedTrack[heading] = this.getTrackTimeFormatted(
-                shiftedTimestamp
-              );
+              const timestamp = parseInt(track[hIndex]);
+              formattedTrack["timestamp"] = timestamp;
+              formattedTrack[heading] = this.getTrackTimeFormatted(timestamp);
               break;
             default:
               formattedTrack[heading] = track[hIndex];
