@@ -12,9 +12,7 @@ export default {
 		<vs-row>
 			<vs-col offset="1" w="10">
 				<tracks-table :headings="trackHeadings" :tracks="tracks" :handleAccepted="handleAccepted" :handleSort="handleSort" />
-				<div class="manager__buttons is-right">
 					<Scrobbler :lfm="lfm" :tracks="tracks.filter(track=>track.accepted === true)" />
-				</div>
 			</vs-col>
 		</vs-row>
     </div>
@@ -60,7 +58,6 @@ export default {
     },
     formatTracks(tracks) {
       return tracks.map((track, index) => {
-
         let formattedTrack = {};
 
         forIn(this.trackHeadings, (heading, hIndex) => {
@@ -88,7 +85,7 @@ export default {
           }
         });
 
-		return formattedTrack;
+        return formattedTrack;
       });
     },
   },

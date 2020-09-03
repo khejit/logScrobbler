@@ -26,10 +26,11 @@ export default {
     template: /*html*/ `<AppStage>
         <Navbar></Navbar>         
         <MainArea>
-            <a :href="'http://www.last.fm/api/auth/?api_key='+apiKey+'&cb='+callbackUrl"
-                class="button is-link is-medium">
+            <vs-button :href="'http://www.last.fm/api/auth/?api_key='+apiKey+'&cb='+callbackUrl"
+                class="main-area__single-button"
+                flat active circle size="large">
                 Log in with Lastfm
-            </a>
+            </vs-button>
         </MainArea>
     </AppStage>`
 }
