@@ -1,8 +1,10 @@
-import {apiKey} from '@/lastfm.json';
+// import {apiKey} from '@/lastfm.json';
 
 import StartAuth from '@/components/auth/StartAuth'
 import AppStage from './AppStage';
-import MainArea from '@/components/MainArea'
+import MainArea from '@/components/MainArea';
+
+const lastfmApiKey = process.env.LASTFM_API_KEY;
 
 export default {
     name: 'Start',
@@ -15,7 +17,7 @@ export default {
     },
     data: function(){
         return {
-            apiKey
+            lastfmApiKey
         }
     },
     computed: {
