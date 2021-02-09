@@ -26,7 +26,7 @@ jobs:
         VUE_APP_LASTFM_API_SECRET: ${{ secrets.LASTFM_API_SECRET }}
 
     - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@3.6.2
+      uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
