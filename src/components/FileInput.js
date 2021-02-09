@@ -1,5 +1,5 @@
 export default {
-  props: ["setTracks", "setAppLoading"],
+  props: ["setTracks", "setLoading"],
   data: () => ({
     file: null,
     fileContent: null
@@ -7,7 +7,7 @@ export default {
   watch: {
     file: function(file) {
       if (file) {
-        this.setAppLoading(true);
+        this.setLoading(true);
         const fr = new FileReader();
         fr.readAsText(file);
         fr.onload = (e) => {
@@ -45,7 +45,7 @@ export default {
         });
 
       setTimeout(() => {
-        this.setAppLoading(false);
+        this.setLoading(false);
         this.setTracks(trackRowsParsed);
       }, 700);
     },

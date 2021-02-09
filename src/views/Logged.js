@@ -1,6 +1,6 @@
 import Scrobbler from '@/components/scrobbler/Scrobbler';
 import LoggedAuth from '@/components/auth/LoggedAuth';
-import AppStage from './AppStage';
+import AppStage from '@/views/AppStage';
 import FileInput from '@/components/FileInput';
 import Manager from '@/components/Manager';
 import MainArea from '@/components/MainArea';
@@ -33,11 +33,11 @@ export default {
       return this.session.username;
     }
   },
-  template: /*html*/ `<AppStage :fit="!tracks.length" v-slot="{setAppLoading}">
+  template: /*html*/ `<AppStage :fit="!tracks.length" v-slot="{setLoading, setLoadingProgress}">
         <Navbar title="Logged in as" :subtitle="username" :actions="actions"></Navbar>
         <MainArea>
-          <Manager v-if="tracks.length" :initialTracks="tracks" :lfm="lfm" />
-          <FileInput v-else :setTracks="setTracks" :setAppLoading="setAppLoading" />
+          <Manager v-if="tracks.length" :initialTracks="tracks" :lfm="lfm" :loadingObject="{setLoading: setLoading, setLoadingProgress: setLoadingProgress}" />
+          <FileInput v-else :setTracks="setTracks" :setLoading="setLoading" />
         </MainArea>
     </AppStage>`,
   mounted: function () {

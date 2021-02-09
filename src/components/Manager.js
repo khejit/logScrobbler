@@ -1,20 +1,20 @@
 import moment from "moment";
-import Scrobbler from "./scrobbler/Scrobbler";
-import TracksTable from "./TracksTable";
+import Scrobbler from "@/components/scrobbler/Scrobbler";
+import TracksTable from "@/components/TracksTable";
 import forIn from "lodash/forIn";
 import cloneDeep from "lodash/cloneDeep";
 
 export default {
   name: "Manager",
-  props: ["initialTracks", "lfm"],
+  props: ["initialTracks", "lfm", "loadingObject"],
   components: { Scrobbler, TracksTable },
   template: /*html*/ `<div class="manager">
-		<vs-row>
-			<vs-col offset="1" w="10">
-				<tracks-table :headings="trackHeadings" :tracks="tracks" :handleAccepted="handleAccepted" :handleSort="handleSort" />
-					<Scrobbler :lfm="lfm" :tracks="tracks.filter(track=>track.accepted === true)" />
-			</vs-col>
-		</vs-row>
+      <vs-row>
+        <vs-col offset="1" w="10">
+          <tracks-table :headings="trackHeadings" :tracks="tracks" :handleAccepted="handleAccepted" :handleSort="handleSort" />
+            <Scrobbler :lfm="lfm" :tracks="tracks.filter(track=>track.accepted === true)" :loadingObject="loadingObject" />
+        </vs-col>
+      </vs-row>
     </div>
     `,
   filters: {

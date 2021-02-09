@@ -1,8 +1,7 @@
-// import * as lastfmJson from '@/lastfm.json';
 const LastfmAPI = require('lastfmapi');
 
-const lastfmApiKey = process.env.LASTFM_API_KEY;
-const lastfmApiSecret = process.env.LASTFM_API_SECRET;
+const lastfmApiKey = process.env.VUE_APP_LASTFM_API_KEY;
+const lastfmApiSecret = process.env.VUE_APP_LASTFM_API_SECRET;
 
 export default {
     data: function () {
