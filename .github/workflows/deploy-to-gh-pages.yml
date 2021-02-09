@@ -14,8 +14,6 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2.3.1
-      with:
-          persist-credentials: false 
 
     - name: Build
       run: |
@@ -28,6 +26,5 @@ jobs:
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.0.0
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: dist
+        branch: gh-pages
+        folder: dist
