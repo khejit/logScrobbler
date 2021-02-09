@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Start from "@/views/Start";
 import Logged from '@/views/Logged';
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
   routes: [
@@ -27,7 +27,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresSession) && !localStorage.getItem('session')) {
     next({ name: 'start' })
   } else if (to.name === 'start' && localStorage.getItem('session')) {
-    next({ name: 'logged' })
+    next({ name: 'logged'})
   } else {
     next()
   }

@@ -5,6 +5,12 @@ import store from '@/store'
 import Vuesax from 'vuesax';
 import 'vuesax/dist/vuesax.css';
 
+
+if (location.search) {
+  location.replace(location.pathname + location.hash + location.search)
+}
+
+
 Vue.config.productionTip = false
 
 Vue.use(Vuesax, {

@@ -28,9 +28,9 @@ export default {
 	},
 	methods: {
 		getTokenIfPresent: function() {
-			// const token = this.$route.query.token; // doesn't work in router hash mode
-			const urlParams = new URLSearchParams(window.location.search);
-			const token = urlParams.get('token');
+			const token = this.$route.query.token;
+			/* const urlParams = new URLSearchParams(window.location.search);
+			const token = urlParams.get('token'); */
 			this.token = token || '';
 			return !!this.token;
 		},

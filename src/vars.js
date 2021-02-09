@@ -9,3 +9,6 @@ export const colorBackground = getPropVal('--color-background') || "#EBDFD3";
 export const colorBackgroundLight = getPropVal('--color-background-light') || "#F0F0F0";
 export const colorComplementary = getPropVal('--color-complementary') || "#57483A";
 export const colorDanger = getPropVal("--color-danger") || "#B6174B";
+
+export const navbarColor = getPropVal("--color-navbar") || "#d4d2d5";
+export const logoColor = getPropVal("--color-logo") || "#6E6A6F";

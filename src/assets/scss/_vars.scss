@@ -11,6 +11,8 @@ $colors: (
     background-light: #f0f0f0,
     complementary: #57483A,
     danger: #B6174B,
+    navbar: #d4d2d5,
+    logo: #6E6A6F,
 );
 
 :root {
@@ -21,6 +23,8 @@ $colors: (
     --color-background-light: #{map-get($colors, background-light)};
     --color-complementary: #{map-get($colors, complementary)};
     --color-danger: #{map-get($colors, danger)};
+    --color-navbar: #{map-get($colors, navbar)};
+    --color-logo: #{map-get($colors, logo)};
 }
 
 $default-scale-factor: 10/16;
