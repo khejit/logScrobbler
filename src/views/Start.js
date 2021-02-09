@@ -4,7 +4,7 @@ import StartAuth from '@/components/auth/StartAuth'
 import AppStage from './AppStage';
 import MainArea from '@/components/MainArea';
 
-const lastfmpiKey = process.env.LASTFM_API_KEY;
+const lastfmApiKey = process.env.LASTFM_API_KEY;
 
 export default {
     name: 'Start',
