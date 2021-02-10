@@ -1,8 +1,7 @@
-import throttle from 'lodash/throttle';
-import delay from 'lodash/delay';
+import {mapActions} from 'vuex';
 
 export default {
-  props: ["lfm", "tracks", "loadingObject"],
+  props: ["lfm", "tracks"],
   data: function() {
     return {
       success: null,
@@ -19,16 +18,12 @@ export default {
 			<i v-if="success" class="bx bx-check"></i>&nbsp;{{success?'Scrobbled':'Scrobble selected'}}
 		</vs-button>
   </div>`,
-  computed: {
-    setLoading: vm => vm.loadingObject.setLoading,
-    setLoadingProgress: vm => vm.loadingObject.setLoadingProgress
-  },
   watch: {
     progress: function(value){
       this.setLoadingProgress(value)
     },
     sending: function(value){
-      this.setLoading(value, true)
+      this.setLoading(value)
     }
   },
   methods: {
@@ -63,7 +58,7 @@ export default {
         if (singleResult === false) {
           isAtLeastOneError = true;
         };
-        this.progress = +((index * 100 / tracks.length).toFixed());
+        this.progress = (index * 100 / tracks.length).toFixed();
       }
 
       if (isAtLeastOneError) {
@@ -76,5 +71,9 @@ export default {
     handleClick: function() {
       this.tracks.length && this.scrobbleMultiple(this.tracks);
     },
+    ...mapActions([
+      'setLoading',
+      'setLoadingProgress'
+    ])
   },
 };

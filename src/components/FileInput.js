@@ -1,5 +1,5 @@
 export default {
-  props: ["setTracks", "setLoading"],
+  props: ["callback"],
   data: () => ({
     file: null,
     fileContent: null
@@ -7,7 +7,7 @@ export default {
   watch: {
     file: function(file) {
       if (file) {
-        this.setLoading(true);
+        this.$store.dispatch('setLoading', true);
         const fr = new FileReader();
         fr.readAsText(file);
         fr.onload = (e) => {
@@ -17,7 +17,7 @@ export default {
     },
     fileContent: function(fileContent) {
       if (fileContent) {
-        this.parseAndSetTracks();
+        this.parseAndCallback();
       }
     },
   },
@@ -34,7 +34,7 @@ export default {
       element.innerHTML = character;
       return element.innerHTML;
     },
-    parseAndSetTracks() {
+    parseAndCallback() {
       const newLineRegex = /\r?\n/,
         rowSeparatorEntity = "&#x9;";
 
@@ -44,9 +44,10 @@ export default {
           return rowStr.split(this.encodeHtml(rowSeparatorEntity));
         });
 
+      // timeout just to have pretty loader for a moment, can as well be deleted
       setTimeout(() => {
-        this.setLoading(false);
-        this.setTracks(trackRowsParsed);
+        this.$store.dispatch('setLoading', false);
+        this.callback(trackRowsParsed);
       }, 700);
     },
   },

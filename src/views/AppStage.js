@@ -1,21 +1,24 @@
+import { mapState } from 'vuex';
+
 export default {
     props: ['fit'],
     template: /*html*/ `<div class="app__stage" :class="{fit}">
-        <slot :set-loading="setLoading" :set-loading-progress="setLoadingProgress"></slot>
+        <slot></slot>
     </div>`,
     data(){
         return {
-          vsLoadingInstance: null,
-          loading: false,
-          withProgress: false
+          vsLoadingInstance: null
         };
     },
+    computed: {
+        ...mapState({
+            withProgress: state => state.loadingProgress === null ? false : true,
+            loading: state => state.loading,
+            loadingProgress: state => state.loadingProgress
+        })
+    },
     methods: {
-        setLoading(value, withProgress = false) {
-            this.withProgress = withProgress;
-            this.loading = !!value;
-        },
-        setLoadingProgress(value) {
+        setVsLoadingProgress(value) {
             this.vsLoadingInstance && this.vsLoadingInstance.changeProgress('' + value);
         }
     },
@@ -28,6 +31,9 @@ export default {
             } else {
                 this.vsLoadingInstance.close();
             }
+        },
+        loadingProgress: function(newVal) {
+            this.setVsLoadingProgress(newVal);
         }
     }
 }

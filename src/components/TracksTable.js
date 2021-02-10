@@ -9,7 +9,7 @@ export default {
         <template #thead>
             <vs-tr>
                 <vs-th v-for="(title, key) in headings" :key="key"
-                sort @click="handleSort($event, title)">
+                sort @click="sortTracks($event, title)">
                     {{title | capitalize}}
                 </vs-th>
             </vs-tr>
@@ -21,14 +21,14 @@ export default {
                 :data="track">
                 <template v-for="(prop, key) in track">
                     <vs-td v-if="key==='accepted'">
-                        <vs-checkbox :value="prop" :checked="prop" @change="handleAccepted(track)" />
+                        <vs-checkbox :value="prop" :checked="prop" @change="changeTrackAcceptedState(track)" />
                     </vs-td>
                     <vs-td v-else-if="(key!=='timestamp' && !startsWith(key, 'vs'))">{{prop}}</vs-td>
                 </template>
             </vs-tr>
         </template>
     </vs-table>`,
-  props: ["headings", "tracks", "handleAccepted", "handleSort"],
+  props: ["headings", "tracks", "changeTrackAcceptedState", "sortTracks"],
   data() {
     return {
       search: "",

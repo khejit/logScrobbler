@@ -33,11 +33,11 @@ export default {
       return this.session.username;
     }
   },
-  template: /*html*/ `<AppStage :fit="!tracks.length" v-slot="{setLoading, setLoadingProgress}">
+  template: /*html*/ `<AppStage :fit="!tracks.length">
         <Navbar title="Logged in as" :subtitle="username" :actions="actions"></Navbar>
         <MainArea>
-          <Manager v-if="tracks.length" :initialTracks="tracks" :lfm="lfm" :loadingObject="{setLoading: setLoading, setLoadingProgress: setLoadingProgress}" />
-          <FileInput v-else :setTracks="setTracks" :setLoading="setLoading" />
+          <Manager v-if="tracks.length" :initialTracks="tracks" :lfm="lfm" />
+          <FileInput v-else :callback="setTracks" />
         </MainArea>
     </AppStage>`,
   mounted: function () {
