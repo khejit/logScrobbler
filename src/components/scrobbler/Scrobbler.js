@@ -1,4 +1,5 @@
-import {mapActions} from 'vuex';
+import { mapActions } from 'vuex';
+import removeFileReminder from '@/components/global/removeFileReminder';
 
 export default {
   props: ["lfm", "tracks"],
@@ -23,7 +24,11 @@ export default {
       this.setLoadingProgress(value)
     },
     sending: function(value){
-      this.setLoading(value)
+      this.setLoading(value);
+
+      if (value === false && this.success === true && !!localStorage.getItem('dontRemindAgain') == false){
+        this.openNotification();
+      }
     }
   },
   methods: {
@@ -70,6 +75,15 @@ export default {
     },
     handleClick: function() {
       this.tracks.length && this.scrobbleMultiple(this.tracks);
+    },
+    openNotification(position = 'bottom-center') {
+      this.vsNotificationInstance = this.$vs.notification({
+        position,
+        duration: 'none',
+        title: 'Remember to delete your .scrobbler.log file',
+        text: "This will prevent accidentaly sending the same tracks next time. LogScrobbler cannot delete files on your computer.",
+        content: removeFileReminder
+      })
     },
     ...mapActions([
       'setLoading',
