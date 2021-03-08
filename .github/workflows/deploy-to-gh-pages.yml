@@ -20,8 +20,8 @@ jobs:
         npm install
         npm run build
       env:
-        VUE_APP_LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        VUE_APP_LASTFM_API_SECRET: ${{ secrets.LASTFM_API_SECRET }}
+        VUE_APP_LASTFM_API_KEY: ${{ secrets.LastfmApiKey }}
+        VUE_APP_LASTFM_API_SECRET: ${{ secrets.LastfmApiSecret }}
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
