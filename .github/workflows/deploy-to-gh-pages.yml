@@ -15,16 +15,13 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.1
 
-    - name: Store variables
-      run: |
-        touch .env
-        echo 'VUE_APP_LASTFM_API_SECRET=${{ secrets.LASTFM_API_SECRET }}' >> .env
-        echo 'VUE_APP_LASTFM_API_KEY=${{ secrets.LASTFM_API_KEY }}' >> .env
-
     - name: Build
       run: |
         npm install
         npm run-script build
+      env:
+        VUE_APP_LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        VUE_APP_LASTFM_API_SECRET: ${{ secrets.LASTFM_API_SECRET }}
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
