@@ -18,8 +18,8 @@ jobs:
     - name: Store variables
       run: |
         touch .env
-        VUE_APP_LASTFM_API_KEY=${{ secrets.LASTFM_API_KEY }} >> .env
-        VUE_APP_LASTFM_API_SECRET=${{ secrets.LASTFM_API_SECRET }} >> .env
+        echo 'VUE_APP_LASTFM_API_SECRET=${{ secrets.LASTFM_API_SECRET }}' >> .env
+        echo 'VUE_APP_LASTFM_API_KEY=${{ secrets.LASTFM_API_KEY }}' >> .env
 
     - name: Build
       run: |
