@@ -19,12 +19,11 @@ jobs:
       run: |
         npm install
         npm run build
-      with:
-        VUE_APP_LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
-        VUE_APP_LASTFM_API_SECRET: ${{ secrets.LASTFM_API_SECRET }}
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
+        VUE_APP_LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+        VUE_APP_LASTFM_API_SECRET: ${{ secrets.LASTFM_API_SECRET }}
         branch: gh-pages
         folder: dist
