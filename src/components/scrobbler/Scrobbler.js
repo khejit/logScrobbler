@@ -54,7 +54,19 @@ export default {
       this.sending = true;
       let isAtLeastOneError = false;
 
-      for (const [index, track] of tracks.entries()) {
+      await Promise.all(tracks.map(async track => {
+        const singleResult = await this.scrobbleSingle(
+          track.artist,
+          track.track,
+          track.timestamp
+        );
+        if (singleResult === false) {
+          isAtLeastOneError = true;
+        };
+        this.progress += (1 / tracks.length).toFixed();
+      }))
+
+      /* for (const [index, track] of tracks.entries()) {
         const singleResult = await this.scrobbleSingle(
           track.artist,
           track.track,
@@ -64,7 +76,7 @@ export default {
           isAtLeastOneError = true;
         };
         this.progress = (index * 100 / tracks.length).toFixed();
-      }
+      } */
 
       if (isAtLeastOneError) {
         this.success = false;
